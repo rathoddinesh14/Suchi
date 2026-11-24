@@ -1,10 +1,10 @@
 #pragma once
 
-#include "suchi/LogLevel.hpp"
-
 #include <filesystem>
 #include <string>
 #include <unordered_map>
+
+#include "suchi/LogLevel.hpp"
 
 namespace suchi {
 

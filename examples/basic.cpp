@@ -1,6 +1,6 @@
-#include "suchi/Suchi.hpp"
-
 #include <iostream>
+
+#include "suchi/Suchi.hpp"
 
 int main() {
     try {

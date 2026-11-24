@@ -1,13 +1,13 @@
 #pragma once
 
-#include "suchi/Suchi.hpp"
-
 #include <atomic>
 #include <cstddef>
 #include <memory>
 #include <mutex>
 #include <string>
 #include <vector>
+
+#include "suchi/Suchi.hpp"
 
 namespace test_support {
 
@@ -25,7 +25,9 @@ inline std::shared_ptr<Recorder>& recorderSlot() {
 class MemoryBackend final : public suchi::ILoggingBackend {
 public:
     explicit MemoryBackend(std::shared_ptr<Recorder> recorder) : recorder_(std::move(recorder)) {}
-    suchi::BackendDescriptor descriptor() const override { return {"test-memory", "In-memory test sink"}; }
+    suchi::BackendDescriptor descriptor() const override {
+        return {"test-memory", "In-memory test sink"};
+    }
     void write(const suchi::LogRecord& record) noexcept override {
         try {
             std::lock_guard<std::mutex> lock(recorder_->mutex);
@@ -35,6 +37,7 @@ public:
         }
     }
     void flush() noexcept override { ++recorder_->flushCount; }
+
 private:
     std::shared_ptr<Recorder> recorder_;
 };

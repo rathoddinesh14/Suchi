@@ -1,7 +1,8 @@
-#include "test_harness.hpp"
-#include "suchi/LogField.hpp"
 #include <cstdint>
 #include <type_traits>
+
+#include "suchi/LogField.hpp"
+#include "test_harness.hpp"
 
 SUCHI_TEST(field_factory_preserves_scalar_types) {
     using suchi::FieldValue;

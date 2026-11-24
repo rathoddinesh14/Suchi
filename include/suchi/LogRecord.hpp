@@ -1,12 +1,12 @@
 #pragma once
 
-#include "suchi/LogField.hpp"
-#include "suchi/LogLevel.hpp"
-
 #include <chrono>
 #include <cstdint>
 #include <string>
 #include <thread>
+
+#include "suchi/LogField.hpp"
+#include "suchi/LogLevel.hpp"
 
 namespace suchi {
 

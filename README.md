@@ -13,7 +13,7 @@ The initial implementation provides:
 - Strict `key=value` configuration file loading with defaults and validation.
 - Safe logging calls that do not propagate exceptions into application code.
 - CMake install/export package and consumer target `Suchi::Core`.
-- Unit tests, example, and cross-platform GitHub Actions workflow.
+- Unit tests, example, and Linux GitHub Actions quality workflow.
 
 Dynamic plugin loading, async logging, file rotation, and third-party adapters are separate follow-up milestones and are not claimed as implemented in this release.
 
@@ -118,6 +118,8 @@ MIT. See [LICENSE](LICENSE).
 ## Test-driven development
 
 Tests are organized by behavior under `tests/`, implemented with Catch2, and discovered by CTest. When tests are enabled, CMake uses an installed Catch2 3 package or fetches Catch2 v3.8.1. New behavior and bug fixes must follow the Red → Green → Refactor cycle: add a failing test first, implement the smallest passing change, refactor, then run the complete suite.
+
+GitHub Actions delegates formatting, clang-tidy, and CMake/CTest checks to [cpp-devkit](https://github.com/rathoddinesh14/cpp-devkit), pinned to `v1.0.0`.
 
 ```bash
 cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DSUCHI_BUILD_TESTS=ON

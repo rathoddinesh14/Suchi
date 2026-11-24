@@ -1,0 +1,17 @@
+name: C++ Quality
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  quality:
+    uses: rathoddinesh14/cpp-devkit/.github/workflows/cpp-quality.yml@v1.0.0
+    with:
+      config_ref: v1.0.0
+      run_format: true
+      run_tidy: true
+      run_build_and_test: true

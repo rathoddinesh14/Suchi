@@ -3,8 +3,8 @@
 #include <cstdint>
 #include <string>
 #include <string_view>
-#include <variant>
 #include <utility>
+#include <variant>
 #include <vector>
 
 namespace suchi {

@@ -1,5 +1,5 @@
-#include "test_harness.hpp"
 #include "suchi/LogLevel.hpp"
+#include "test_harness.hpp"
 
 SUCHI_TEST(log_level_names_are_stable) {
     SUCHI_CHECK_EQ(suchi::toString(suchi::LogLevel::Trace), std::string_view{"TRACE"});

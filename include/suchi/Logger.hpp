@@ -1,12 +1,12 @@
 #pragma once
 
-#include "suchi/LogField.hpp"
-#include "suchi/LogLevel.hpp"
-#include "suchi/LogRecord.hpp"
-
 #include <source_location>
 #include <string>
 #include <string_view>
+
+#include "suchi/LogField.hpp"
+#include "suchi/LogLevel.hpp"
+#include "suchi/LogRecord.hpp"
 
 namespace suchi {
 

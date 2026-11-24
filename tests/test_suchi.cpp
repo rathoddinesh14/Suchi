@@ -1,5 +1,3 @@
-#include "suchi/Suchi.hpp"
-
 #include <cstdlib>
 #include <filesystem>
 #include <fstream>
@@ -8,9 +6,17 @@
 #include <string>
 #include <vector>
 
+#include "suchi/Suchi.hpp"
+
 namespace {
 int failures = 0;
-#define CHECK(condition) do { if (!(condition)) { std::cerr << "FAIL: " #condition " at " << __LINE__ << '\n'; ++failures; } } while (false)
+#define CHECK(condition)                                                 \
+    do {                                                                 \
+        if (!(condition)) {                                              \
+            std::cerr << "FAIL: " #condition " at " << __LINE__ << '\n'; \
+            ++failures;                                                  \
+        }                                                                \
+    } while (false)
 std::vector<suchi::LogRecord> records;
 class MemoryBackend final : public suchi::ILoggingBackend {
 public:
@@ -21,7 +27,7 @@ public:
 std::unique_ptr<suchi::ILoggingBackend> makeMemory(const suchi::LoggingConfig&) {
     return std::make_unique<MemoryBackend>();
 }
-}
+} // namespace
 
 int main() {
     using namespace suchi;
@@ -31,7 +37,8 @@ int main() {
     const auto configPath = std::filesystem::temp_directory_path() / "suchi-test.conf";
     {
         std::ofstream out(configPath);
-        out << "level=debug\nbackend=memory\ntimestamp=false\nthread_id=true\nbackend.buffer=4096\n";
+        out << "level=debug\nbackend=memory\ntimestamp=false\nthread_id=true\nbackend.buffer="
+               "4096\n";
     }
     const auto parsed = LoggingConfig::fromFile(configPath);
     CHECK(parsed.minimumLevel == LogLevel::Debug);
@@ -69,7 +76,8 @@ int main() {
         CHECK(true);
     }
 
-    if (failures != 0) return EXIT_FAILURE;
+    if (failures != 0)
+        return EXIT_FAILURE;
     std::cout << "All Suchi tests passed\n";
     return EXIT_SUCCESS;
 }

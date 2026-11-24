@@ -1,7 +1,8 @@
 #pragma once
-#include "suchi/Backend.hpp"
 #include <mutex>
 #include <unordered_map>
+
+#include "suchi/Backend.hpp"
 
 namespace suchi::detail {
 struct Runtime {
@@ -13,4 +14,4 @@ struct Runtime {
 Runtime& runtime();
 void dispatch(LogRecord record) noexcept;
 bool enabled(LogLevel level) noexcept;
-}
+} // namespace suchi::detail

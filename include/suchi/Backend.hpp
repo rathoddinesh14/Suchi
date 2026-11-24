@@ -1,11 +1,11 @@
 #pragma once
 
-#include "suchi/LogRecord.hpp"
-#include "suchi/LoggingConfig.hpp"
-
 #include <memory>
 #include <string>
 #include <string_view>
+
+#include "suchi/LogRecord.hpp"
+#include "suchi/LoggingConfig.hpp"
 
 namespace suchi {
 
