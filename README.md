@@ -114,3 +114,29 @@ Suchi does not inspect application objects or automatically capture patient data
 ## License
 
 MIT. See [LICENSE](LICENSE).
+
+## Test-driven development
+
+Tests are organized by behavior under `tests/`, implemented with Catch2, and discovered by CTest. When tests are enabled, CMake uses an installed Catch2 3 package or fetches Catch2 v3.8.1. New behavior and bug fixes must follow the Red → Green → Refactor cycle: add a failing test first, implement the smallest passing change, refactor, then run the complete suite.
+
+```bash
+cmake -S . -B build -DCMAKE_BUILD_TYPE=Debug -DSUCHI_BUILD_TESTS=ON
+cmake --build build --parallel
+ctest --test-dir build --output-on-failure
+```
+
+For a GCC/Clang coverage build (requires `gcovr`):
+
+```bash
+cmake -S . -B build-coverage \
+  -DCMAKE_BUILD_TYPE=Debug \
+  -DSUCHI_BUILD_TESTS=ON \
+  -DCMAKE_CXX_FLAGS="--coverage -O0 -g" \
+  -DCMAKE_EXE_LINKER_FLAGS="--coverage"
+cmake --build build-coverage --parallel
+ctest --test-dir build-coverage --output-on-failure
+gcovr --root . --filter 'src/.*' --filter 'include/.*' \
+  --exclude 'tests/.*' --print-summary
+```
+
+The test suite uses an in-memory backend for deterministic assertions and does not require external logging libraries. Keep test names behavior-oriented and add regression cases for every defect found.
