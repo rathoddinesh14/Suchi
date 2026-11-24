@@ -1,0 +1,10 @@
+# Suchi logging configuration
+level=info
+backend=console
+timestamp=true
+thread_id=false
+source_location=false
+color=true
+
+# Adapter-specific options are retained for the selected backend.
+# backend.buffer_size=8192
