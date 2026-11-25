@@ -1,0 +1,5 @@
+cmake_minimum_required(VERSION 3.20)
+project(SuchiInstalledConsumer LANGUAGES CXX)
+find_package(Suchi CONFIG REQUIRED)
+add_executable(suchi_consumer main.cpp)
+target_link_libraries(suchi_consumer PRIVATE Suchi::Core)
